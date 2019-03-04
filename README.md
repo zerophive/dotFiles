@@ -1,5 +1,34 @@
 # (.) files
 
+## Getting up and running
+This is what you need to do to get up and running with these dotFiles.
+
+```
+alias dotFiles='/usr/bin/git --git-dir=${HOME}/.dotFiles/ --work-tree=${HOME}'
+echo ".dotFiles" >> .gitignore
+git clone --bare https://github.com/zerophive/dotFiles.git $HOME/.cfg
+dotFiles checkout
+```
+there might be some errors to correct
+
+```
+error: The following untracked working tree files would be overwritten by checkout:
+    .bashrc
+    .gitignore
+Please move or remove them before you can switch branches.
+Aborting
+```
+eventually there will be a setup or bootstrap script to archive and deal with this, for now deal with it.
+
+Then need this to make things quiet
+
+```
+dotFiles config --local status.showUntrackedFiles no
+```
+and there you go, ready to work.
+
+**Remember** use ```dotFiles``` instead of ```git```
+
 ## Creating the repo and what I did
 I saw this article [The best way to store your dotfiles: A bare Git repository](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) and it spoke to me in the midst of my frustration in choosing between GNU Stow and VCSH. I liked to idea of depending on ***nothing*** and ***rolling my own solution*** and so.
 
@@ -7,13 +36,13 @@ Here is what I did when I set this up:
 
 ```
 git init --bare $HOME/.dotFiles
-alias dotFiles='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
+alias dotFiles='/usr/bin/git --git-dir=${HOME}/.dotFiles/ --work-tree=${HOME}'
 dotFiles config --local status.showUntrackedFiles no
 ```
 I like to add this alias with my other aliases, or if this is a new system something like
 
 ```
-echo "alias dotFiles ='/usr/bin/git --git-dir=$HOME/. dotFiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+echo "alias dotFiles ='/usr/bin/git --git-dir=${HOME}/. dotFiles/ --work-tree=${HOME}'" >> $HOME/.bashrc
 ```
 Also add ```.dotFile``` to ```.gitignore``` because git is git
 

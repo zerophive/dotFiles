@@ -3,7 +3,7 @@
 ##################
 # dotFile majixs #
 ##################
-alias dotFiles='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
+alias dotFiles='/usr/bin/git --git-dir=${HOME}/.dotFiles/ --work-tree=${HOME}'
 alias dt=dotFiles
 
 ###########################################
