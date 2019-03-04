@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+##################
+# dotFile majixs #
+##################
+alias dotFiles='/usr/bin/git --git-dir=$HOME/.dotFiles/ --work-tree=$HOME'
+alias dt=dotFiles
+
+###########################################
+# list files with folder/synlink demarker #
+###########################################
+if [[ ${GNU_STYLE_LS} ]]; then
+	alias ls='ls --color -F'
+else
+    alias ls='ls -F'
+fi
+
+#############
+# shortcuts #
+#############
+alias cl='clear'
+
+##########################################
+# some helpful probes to open UI Editors #
+##########################################
+alias openm='open -a /Applications/MacDown.app'
+alias opens='open -a /Applications/Sublime\ Text\ 2.app'
+alias openx='open -a /Applications/Xcode.app'

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+#######################
+# set PATH # to glory #
+#######################
+LOCAL_BIN="/usr/local/bin"
+MY_LOCAL_BIN="${HOME}/usr/bin"
+PATH="$LOCAL_BIN:$MY_LOCAL_BIN:$PATH"
+# de-dup path entries
+export PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
+
+######################
+# set color terminal #
+######################
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+    export GNU_STYLE_LS=1
+else
+    export CLICOLOR=1
+fi

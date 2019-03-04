@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+function cleanHosts() {
+    # usage
+    usage="usage: cleanHosts [--backup | -b] <host1> <host2> ..."
+    if [ ${#1} -eq 0 ]; then
+        echo "$usage"
+        return 0
+    fi
+
+    SSH_DIR="${HOME}/.ssh"
+
+    if [[ ${1} == "--backup" || ${1} == "-b" ]]; then
+        echo "... backing up known_hosts..."
+        cp ${SSH_DIR}/known_hosts ${SSH_DIR}/known_hosts.bak
+        cp ${SSH_DIR}/known_hosts2 ${SSH_DIR}/known_hosts2.bak
+        shift
+    fi
+
+    while [ ${#1} -gt 0 ]; do
+        if  grep -q ${1} ${SSH_DIR}/known_hosts || grep -q ${1} ${SSH_DIR}/known_hosts2 ; then
+            echo "...removing host: ${1}"
+
+            grep -v ${1} ${SSH_DIR}/known_hosts > ${SSH_DIR}/known_hosts.$$.new
+            mv ${SSH_DIR}/known_hosts.$$.new ${SSH_DIR}/known_hosts
+
+            grep -v ${1} ${SSH_DIR}/known_hosts2 > ${SSH_DIR}/known_hosts2.$$.new
+            mv ${SSH_DIR}/known_hosts2.$$.new ${SSH_DIR}/known_hosts2
+        else
+            warn "...${1} not in known_hosts"
+        fi
+        shift
+    done
+}
+
+function depbx() {
+    # depbx clears out my personal pbxuser files from my projects.
+    /usr/bin/find . \( -name '${USER}.pbxuser' -o -name '${USER}.mode1' -o -name '${USER}.mode1v3' \) -a -print -a -delete -prune
+}
+
+function depyc() {
+    # depyc clears out compiled Python objects
+    /usr/bin/find . -name '*.pyc' -a -print -a -delete -prune
+}
+
+function getCurl() {
+    if [ ! ${1} ] ; then
+        echo "Need inputs!!";
+        return 1;
+    fi
+
+    outputFile=`echo "$1" | sed -e 's/^.*\/*[A-Za-z]\///g'`
+    curl $1 -o $outputFile
+}
+
+###############################
+# some colorized echo helpers #
+# @author Adam Eivy           #
+###############################
+
+# Colors
+ESC_SEQ="\x1b["
+COL_RESET=$ESC_SEQ"39;49;00m"
+COL_RED=$ESC_SEQ"31;01m"
+COL_GREEN=$ESC_SEQ"32;01m"
+COL_YELLOW=$ESC_SEQ"33;01m"
+COL_BLUE=$ESC_SEQ"34;01m"
+COL_MAGENTA=$ESC_SEQ"35;01m"
+COL_CYAN=$ESC_SEQ"36;01m"
+
+function ok() {
+    echo -e "$COL_GREEN[ok]$COL_RESET "$1
+}
+
+function bot() {
+    echo -e "\n$COL_GREEN\[._.]/$COL_RESET - "$1
+}
+
+function running() {
+    echo -en "$COL_YELLOW ⇒ $COL_RESET"$1": "
+}
+
+function action() {
+    echo -e "\n$COL_YELLOW[action]:$COL_RESET\n ⇒ $1..."
+}
+
+function warn() {
+    echo -e "$COL_YELLOW[warning]$COL_RESET "$1
+}
+
+function error() {
+    echo -e "$COL_RED[error]$COL_RESET "$1
+}

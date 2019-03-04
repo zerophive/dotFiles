@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#####################################
+# set the terminal title and prompt #
+#####################################
+export PS1="[\h:\w] \u% "
