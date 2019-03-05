@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+##################################
+# Install software from Homebrew #
+##################################
+
+# check for Homebrew
+####################
+/usr/local/bin/brew -v > /dev/null
+
+if [[ $? != 0 ]]; then
+    cat << EOF
+Homebrew does not appear to be installed!!
+please install Homebrew by running the following:
+
+    /usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+or visit:
+
+    https://brew.sh
+
+for more information
+EOF
+
+    return 1
+fi
+
+# update brew
+#############
+brew update
+
+# upgrade anything that might be installed already
+##################################################
+brew upgrade
+brew cask upgrade
+
+# install these softwares
+#########################
+brew install coreutils
+brew install bash
+brew install bash-completion2
+# need something about updating /etc/shells and chsh
+brew install git
+brew install gnu-sed
+brew install python
+brew install python3
+brew install libaacs
+brew install libbdplus
+brew install libbluray
+brew install libdvdcss
+# need something to symlink libs to ~/lib
+brew install pcre
+brew install pstree
+brew install tig
+brew install vim
+brew install exiftool
+
+# install these casks
+#####################
+brew cask install macdown
