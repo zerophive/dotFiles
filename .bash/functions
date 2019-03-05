@@ -18,7 +18,7 @@ function cleanHosts() {
     fi
 
     while [ ${#1} -gt 0 ]; do
-        if  grep -q ${1} ${SSH_DIR}/known_hosts || grep -q ${1} ${SSH_DIR}/known_hosts2; then
+        if  [ $(grep -q ${1} ${SSH_DIR}/known_hosts) ] || grep -q ${1} ${SSH_DIR}/known_hosts2; then
             echo "...removing host: ${1}"
 
             grep -v ${1} ${SSH_DIR}/known_hosts > ${SSH_DIR}/known_hosts.$$.new
