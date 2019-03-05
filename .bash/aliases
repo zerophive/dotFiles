@@ -9,7 +9,7 @@ alias dt=dotFiles
 ###########################################
 # list files with folder/synlink demarker #
 ###########################################
-if [[ ${GNU_STYLE_LS} ]]; then
+if [[ -n ${GNU_STYLE_LS} ]]; then
 	alias ls='ls --color -F'
 else
     alias ls='ls -F'

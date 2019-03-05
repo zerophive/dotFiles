@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function cleanHosts() {
-    # usage
+    # cleans out host names from ~/ssh/known_hosts files
     usage="usage: cleanHosts [--backup | -b] <host1> <host2> ..."
     if [ ${#1} -eq 0 ]; then
         echo "$usage"
@@ -18,7 +18,7 @@ function cleanHosts() {
     fi
 
     while [ ${#1} -gt 0 ]; do
-        if  [ $(grep -q ${1} ${SSH_DIR}/known_hosts) ] || grep -q ${1} ${SSH_DIR}/known_hosts2; then
+        if  grep -q ${1} ${SSH_DIR}/known_hosts || grep -q ${1} ${SSH_DIR}/known_hosts2; then
             echo "...removing host: ${1}"
 
             grep -v ${1} ${SSH_DIR}/known_hosts > ${SSH_DIR}/known_hosts.$$.new
@@ -44,6 +44,7 @@ function depyc() {
 }
 
 function getCurl() {
+    # get a file via cUrl, like -O but better
     if [ ! ${1} ]; then
         echo "Need inputs!!";
         return 1;

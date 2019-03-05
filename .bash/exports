@@ -5,9 +5,11 @@
 #######################
 LOCAL_BIN="/usr/local/bin"
 MY_LOCAL_BIN="${HOME}/usr/bin"
-PATH="$LOCAL_BIN:$MY_LOCAL_BIN:$PATH"
+PATH="${LOCAL_BIN}:${MY_LOCAL_BIN}:${PATH}"
+
 # de-dup path entries
-export PATH=$(printf %s "$PATH" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
+#####################
+export PATH=$(printf %s "${PATH}" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
 
 ######################
 # set color terminal #
