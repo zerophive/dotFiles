@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 
+##############################################################################
+# clangit() - basic clang compilation, naming object file same as input file #
+##############################################################################
+function clangit() {
+    # gsed implementation, not sure to use this one or a more generic sed
+    #local output=$(echo ${1} | gsed -e 's/\.c\|\.cpp\|\.m\|\.mm//')
+    local output=$(echo ${1} | sed -e 's/\.cpp//;s/\.c//;s/\.mm//;s/\.m//')
+    clang ${1} -o ${output}
+}
+
+###################################################################
+# cleanHosts() cleans out host names from ~/ssh/known_hosts files # 
+###################################################################
 function cleanHosts() {
-    # cleans out host names from ~/ssh/known_hosts files
     usage="usage: cleanHosts [--backup | -b] <host1> <host2> ..."
     if [ ${#1} -eq 0 ]; then
         echo "$usage"
         return 0
     fi
 
-    SSH_DIR="${HOME}/.ssh"
+    local SSH_DIR="${HOME}/.ssh"
 
     if [[ ${1} == "--backup" || ${1} == "-b" ]]; then
         echo "... backing up known_hosts..."
@@ -33,24 +45,30 @@ function cleanHosts() {
     done
 }
 
+###################################################################
+# depbx() - clears out my personal pbxuser files from my projects #
+###################################################################
 function depbx() {
-    # depbx clears out my personal pbxuser files from my projects.
     /usr/bin/find . \( -name '${USER}.pbxuser' -o -name '${USER}.mode1' -o -name '${USER}.mode1v3' \) -a -print -a -delete -prune
 }
 
+#################################################
+# depyc() -  clears out compiled Python objects #
+#################################################
 function depyc() {
-    # depyc clears out compiled Python objects
     /usr/bin/find . -name '*.pyc' -a -print -a -delete -prune
 }
 
+########################################################
+# getCurl() -  get a file via cUrl, like -O but better #
+########################################################
 function getCurl() {
-    # get a file via cUrl, like -O but better
     if [ ! ${1} ]; then
         echo "Need inputs!!";
         return 1;
     fi
 
-    outputFile=`echo "$1" | sed -e 's/^.*\/*[A-Za-z]\///g'`
+    local outputFile=`echo "$1" | sed -e 's/^.*\/*[A-Za-z]\///g'`
     curl $1 -o $outputFile
 }
 
