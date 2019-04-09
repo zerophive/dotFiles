@@ -1,0 +1,270 @@
+#!/usr/bin/env bash
+set -x
+
+# inspired and based off of Mathias Bynens' .macos setup script
+# # ~/.macos — https://mths.be/macos
+
+# Quit System Preferences: because remember how much you love cfprefsd
+######################################################################
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+############################################
+sudo -v
+
+# I really like this bit of sh-foo
+# Keep-alive: update existing `sudo` time stamp until `.macOS` has finished
+###########################################################################
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+####################
+# Power Management #
+####################
+
+# disable iCloud proximity waking
+#################################
+sudo pmset -a proximitywake 0
+
+# disable wake on lan
+#####################
+sudo pmset -a womp 0
+
+##################
+# System-wide UI #
+##################
+
+# sidebar ican size: medium
+###########################
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+# disable focus-ring animation
+##############################
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+
+# expand save panels by default
+###############################
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# expand print panels by default
+################################
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# save to local disk not to iCloud by default
+#############################################
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# automatically quit Printer.app when jobs are complete
+#######################################################
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# disable LS Quarantine
+#######################
+# I do find this annoying, but I am paranoid, to leaving on for now
+#defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# HelpViewer window to non-floating mode
+########################################
+defaults write com.apple.helpviewer DevMode -bool true
+
+# reveal: IP, hostname, OS version, etc in login window clock click
+###################################################################
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# restart on panic
+##################
+sudo systemsetup -setrestartfreeze on
+
+# disable automatic capitalization
+##################################
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# disable smart dashes
+######################
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# disable automatic period substitution
+#######################################
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# disable smart quotes - they suck
+##################################
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+##################
+# Input Settings #
+##################
+
+# enable full keyboard access for all controls
+##############################################
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# set language and text formats
+###############################
+defaults write NSGlobalDomain AppleLanguages -array "en-US" "el-US"
+defaults write NSGlobalDomain AppleLocale -string "en_US"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+defaults write NSGlobalDomain AppleMetricUnits -bool false
+
+# set timezone
+##############
+sudo systemsetup -settimezone "America/Los_Angeles" > /dev/null
+
+###################
+# Screen Settings #
+###################
+
+# password required immediately on sleep or screen saver
+########################################################
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# screen grab settings
+######################
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# enable HiDPI modes (requires restart)
+#######################################
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+##########
+# Finder #
+##########
+
+# set $HOME as default for new Finder windows
+#############################################
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
+
+# icons for HDs, servers, and removable media on the desktop
+############################################################
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# show all extensions
+#####################
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# show status bar
+#################
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# show path bar
+###############
+defaults write com.apple.finder ShowPathbar -bool true
+
+# search the current folder by default
+######################################
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+
+# disable the warning when changing a file extension
+####################################################
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# enable spring loading for directories
+#######################################
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+# set the spring loading delay for directories to 0.25
+######################################################
+defaults write NSGlobalDomain com.apple.springing.delay -float 0.25
+
+# avoid creating .DS_Store files on network or USB volumes
+##########################################################
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# disable disk image verification
+#################################
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
+# use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+####################################################################
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# preview icon expanded info
+############################
+defaults write com.apple.finder PreviewPaneInfoExpanded -bool true
+
+########
+# Dock #
+########
+
+# enable highlight hover in Stacks
+##################################
+defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+# set icon size to 40, to the right and show always
+###################################################
+defaults write com.apple.dock tilesize -int 40
+defaults write com.apple.dock orientation right
+defaults write com.apple.dock autohide -bool false
+
+# disable magnification
+#######################
+defaults write com.apple.dock magnification -bool false
+
+# show indicator for open Apps
+##############################
+defaults write com.apple.dock show-process-indicators -bool true
+
+################
+# Time Machine #
+################
+
+# stop TM from asking to make new drives TM volumes
+###################################################
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+####################
+# Activity Monitor #
+####################
+
+# do not show main window on startup
+####################################
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool false
+
+# visualize CPU usage on Dock
+#############################
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+# show all processes
+####################
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+# sort by CPU usage
+###################
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+###########################
+# kill apps and finish up #
+###########################
+for app in "Activity Monitor" \
+	"Address Book" \
+	"Calendar" \
+    "cfprefsd" \
+	"Contacts" \
+	"Dock" \
+	"Finder" \
+	"Mail" \
+	"Messages" \
+	"Photos" \
+	"Safari" \
+	"SystemUIServer" \
+	"Terminal" \
+	"Tweetbot" \
+	"Twitter" \
+	"Xcode"; do
+	killall "${app}" &> /dev/null
+done
+echo "Done. Some of these changes require a restart to take effect."
