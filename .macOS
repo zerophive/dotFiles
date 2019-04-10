@@ -1,8 +1,135 @@
 #!/usr/bin/env bash
-set -x
 
 # inspired and based off of Mathias Bynens' .macos setup script
 # # ~/.macos — https://mths.be/macos
+
+#########
+# usage #
+#########
+usage() {
+    echo "Configure this macOS system with the included settings and kill all"
+    echo "effected applications"
+    echo ""
+    echo "The following options are available:"
+    echo "  -r | --reboot   : reboot after completion of script"
+    echo "  -n | --noprompt : reboot without prompting"
+    echo "  -k | --nokill   : do no kill apps"
+}
+
+#############
+# utilities #
+#############
+question() {
+    printf "$1 [y/n] "
+}
+
+############
+# killapps #
+############
+killapps() {
+    for app in "Activity Monitor" \
+	    "Address Book" \
+	    "Calendar" \
+        "cfprefsd" \
+	    "Contacts" \
+	    "Dock" \
+	    "Finder" \
+	    "Mail" \
+	    "Messages" \
+	    "Photos" \
+	    "Safari" \
+	    "SystemUIServer" \
+	    "Terminal" \
+	    "Tweetbot" \
+	    "Twitter" \
+	    "Xcode"; do
+	    killall "${app}" &> /dev/null
+done
+}
+
+###########
+# cleanup #
+###########
+cleanup() {
+    unset reboot
+    unset noprompt
+    unset usage
+    unset cleanup
+    unset answer
+    unset restarting
+    unset app
+    unset killapps
+    unset question
+    unset doReboot
+}
+
+############
+# doReboot #
+############
+doReboot() {
+    if [[ ${reboot} == "YES" ]]; then
+        if [[ ${noprompt} == "YES" ]]; then
+            restarting=1
+        else
+            question "Reboot this system?"
+            read answer
+            case $answer in
+                Y | y | yes | Yes | YES)
+                    restarting=1
+                    ;;
+                N | n | no | No | NO)
+                    ;;
+                *)
+                    ;;
+            esac
+        fi
+    fi
+
+    if [[ -n ${restarting} ]]; then
+        sudo reboot
+    fi
+
+    if [[ ${nokillapps} == "YES" ]]; then
+        cleanup
+    else
+        killapps
+    fi
+    exit 0
+}
+
+######################
+# parse some options #
+######################
+reboot="NO"
+noprompt="NO"
+nokillapps="NO"
+while [ $# -gt 0 ] ; do
+    case $1 in
+        -r | --reboot)
+            reboot="YES"
+            shift
+            ;;
+        -n | --noprompt)
+            noprompt="YES"
+            shift
+            ;;
+        -k | --nokill)
+            nokillapps="YES"
+            shift
+            ;;
+        *)
+            printf "Invalid argument: $1\n\n"
+            usage
+            shift
+            exit 1
+            ;;
+    esac
+done
+
+#######################
+# the real good stuff #
+#######################
+set -x
 
 # Quit System Preferences: because remember how much you love cfprefsd
 ######################################################################
@@ -246,25 +373,11 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
-###########################
-# kill apps and finish up #
-###########################
-for app in "Activity Monitor" \
-	"Address Book" \
-	"Calendar" \
-    "cfprefsd" \
-	"Contacts" \
-	"Dock" \
-	"Finder" \
-	"Mail" \
-	"Messages" \
-	"Photos" \
-	"Safari" \
-	"SystemUIServer" \
-	"Terminal" \
-	"Tweetbot" \
-	"Twitter" \
-	"Xcode"; do
-	killall "${app}" &> /dev/null
-done
+#############
+# finish up #
+#############
+set +x
+echo ""
 echo "Done. Some of these changes require a restart to take effect."
+
+doReboot

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#############################
+# Install software from pip #
+#############################
+
+# check for Python v3.x
+####################
+pyVers=$(python -V)
+pattern='Python 3'
+
+if ! [[ ${pyVers} =~  ${pattern} ]]; then
+    cat << EOF
+Python 3.x is NOT INSTALLED!!
+
+Please install Python 3.x before running this script
+EOF
+    exit 1
+fi
+
+# install Virtualenv
+pip3 install virtualenv
+pip3 install -U virtualenv
