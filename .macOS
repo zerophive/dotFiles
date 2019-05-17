@@ -160,6 +160,15 @@ sudo pmset -a womp 0
 # System-wide UI #
 ##################
 
+# enable Dark look
+###################
+defaults write NSGlobalDomain AppleInterfaceStyle Dark
+
+# orange highlights/accent
+##########################
+defaults write NSGlobalDomain AppleHighlightColor -string  "1.000000 0.874510 0.701961 Orange"
+defaults write NSGlobalDomain AppleAccentColor -int 1
+
 # sidebar ican size: medium
 ###########################
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2

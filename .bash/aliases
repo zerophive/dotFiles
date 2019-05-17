@@ -20,6 +20,15 @@ fi
 #############
 alias cl='clear'
 
+# defaults read/write
+#####################
+alias dr="defaults read"
+alias dw="defaults write"
+
+# git shortcuts
+###############
+alias gp="git pull"
+
 ##########################################
 # some helpful probes to open UI Editors #
 ##########################################
@@ -37,9 +46,4 @@ alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
 # cleanup LaunchServices "Open With" menu
 #########################################
-alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
-# defaults read/write
-#####################
-alias dr="defaults read"
-alias dw="defaults write"
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder Dock"
