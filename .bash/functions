@@ -72,6 +72,14 @@ function getCurl() {
     curl $1 -o $outputFile
 }
 
+#################################################################
+# diskmnt() - mount a secure APFS volume prompting for password #
+#################################################################
+function diskmnt() {
+    running  "enter passphrase"
+    diskutil apfs unlockVolume ${1} -stdinpassphrase
+}
+
 ###############################
 # some colorized echo helpers #
 # @author Adam Eivy           #
