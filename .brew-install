@@ -54,6 +54,7 @@ brew install pstree
 brew install tig
 brew install vim
 brew install exiftool
+brew install imagemagick
 
 # install these casks
 #####################
