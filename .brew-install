@@ -55,7 +55,14 @@ brew install tig
 brew install vim
 brew install exiftool
 brew install imagemagick
+brew install git-delta
 
 # install these casks
 #####################
 brew cask install macdown
+
+# post-install actions
+######################
+
+# set git to use git-delta
+git config --global core.pager "delta --dark"
