@@ -56,6 +56,7 @@ brew install vim
 brew install exiftool
 brew install imagemagick
 brew install git-delta
+brew install tmux
 
 # install these casks
 #####################
