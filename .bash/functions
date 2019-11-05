@@ -80,6 +80,27 @@ function diskmnt() {
     diskutil apfs unlockVolume ${1} -stdinpassphrase
 }
 
+################################################
+# tmx() - connect to an available tmux window  #
+#         or create a new one with a new index #
+################################################
+function tmx() {
+    local num_free_tmux_sesh=$(tmux ls | grep -v attached | wc -l)
+
+    if (( ${num_free_tmux_sesh} > 0 )); then
+        local free_tmux_sesh=$(tmux ls | grep -v "attached" | head -1 | awk '{print $1}' | tr -d \:);
+        tmux attach -t ${free_tmux_sesh};
+    else
+        local tmux_seshs=$(tmux ls | grep "attached" | awk '{print $1}' | tr -d \:)
+        for i in {0..9}; do
+            if ! $(echo ${tmux_seshs} | grep -q "base${i}") ; then
+                tmux new -s "base${i}";
+                break;
+            fi
+        done
+    fi
+}
+
 ###############################
 # some colorized echo helpers #
 # @author Adam Eivy           #
