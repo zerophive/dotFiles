@@ -4,8 +4,9 @@
 # set PATH # to glory #
 #######################
 LOCAL_BIN="/usr/local/bin"
+LOCAL_SBIN="/usr/local/sbin"
 MY_LOCAL_BIN="${HOME}/usr/bin"
-PATH="${LOCAL_BIN}:${MY_LOCAL_BIN}:${PATH}"
+PATH="${LOCAL_BIN}:${LOCAL_SBIN}:${MY_LOCAL_BIN}:${PATH}"
 
 # de-dup path entries
 #####################
