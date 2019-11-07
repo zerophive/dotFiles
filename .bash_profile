@@ -23,6 +23,6 @@ fi;
 # start tmux session                             #
 #   this will kind of force to me use/learn tmux #
 ##################################################
-#if (( ${SHLVL} < 2 )); then
-#    tmx
-#fi
+if (( ${SHLVL} < 2 )); then
+    tmx
+fi
