@@ -101,6 +101,14 @@ function tmx() {
     fi
 }
 
+###############################################
+# mdd() - run a .md thru pandoc and then lynx #
+#           (cause mdv is hosed)              #
+###############################################
+function mdd() {
+    pandoc ${1} | lynx -stdin
+}
+
 ###############################
 # some colorized echo helpers #
 # @author Adam Eivy           #
