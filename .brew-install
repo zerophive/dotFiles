@@ -61,10 +61,14 @@ brew install pandoc
 brew install lynx
 brew install mdv
 brew install ffmpeg
+brew install reattach-to-user-namespace
+brew install wireshark
+brew install bat
 
 # install these casks
 #####################
 brew cask install macdown
+brew cask install wireshark
 
 # post-install actions
 ######################
