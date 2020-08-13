@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-#####################################
-# set the terminal title and prompt #
-#####################################
+#################################################
+# set the terminal title, prompt and properties #
+#################################################
 export PS1="[\h:\w] \u% "
+#export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
+export PROMPT_COMMAND="history -a; history -n"
