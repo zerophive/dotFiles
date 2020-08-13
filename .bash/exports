@@ -20,3 +20,12 @@ if ls --color > /dev/null 2>&1; then # GNU `ls`
 else
     export CLICOLOR=1
 fi
+
+##########################
+# set HISTORY properties #
+##########################
+shopt -s histappend
+export HISTCONTROL=ignorespace:erasedups
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
