@@ -6,7 +6,7 @@ This is what you need to do to get up and running with these dotFiles.
 ```
 alias dotFiles='/usr/bin/git --git-dir=${HOME}/.dotFiles/ --work-tree=${HOME}'
 echo ".dotFiles" >> .gitignore
-git clone --bare https://github.com/zerophive/dotFiles.git $HOME/.cfg
+git clone --bare https://github.com/zerophive/dotFiles.git $HOME/.dotFiles
 dotFiles checkout
 ```
 there might be some errors to correct
