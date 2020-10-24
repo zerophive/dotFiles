@@ -64,6 +64,7 @@ brew install ffmpeg
 brew install reattach-to-user-namespace
 brew install wireshark
 brew install bat
+brew install git-lfs
 
 # install these casks
 #####################
