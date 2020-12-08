@@ -65,6 +65,7 @@ brew install reattach-to-user-namespace
 brew install wireshark
 brew install bat
 brew install git-lfs
+brew install gnupg
 
 # install these casks
 #####################
