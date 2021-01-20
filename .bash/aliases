@@ -33,7 +33,6 @@ alias gp="git pull"
 # some helpful probes to open UI Editors #
 ##########################################
 alias openm='open -a /Applications/MacDown.app'
-alias opens='open -a /Applications/Sublime\ Text\ 2.app'
 alias openx='open -a /Applications/Xcode.app'
 
 #########
