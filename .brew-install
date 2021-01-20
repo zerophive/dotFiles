@@ -65,6 +65,7 @@ brew install reattach-to-user-namespace
 brew install wireshark
 brew install bat
 brew install git-lfs
+brew install gnupg
 brew install swiftlint
 brew install graphviz
 brew install glow

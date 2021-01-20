@@ -15,8 +15,16 @@ set fileformats=unix,mac,dos
 set background=dark
 set hlsearch
 
-syntax on
+"syntax on
 
-map <F2> :bn!<CR>
-map <F3> :bp!<CR>
-map <F4> :bd<CR>
+"map <F2> :bn!<CR>
+"map <F3> :bp!<CR>
+"map <F4> :bd<CR>
+
+"Dracula Pro theme
+packadd! dracula_pro
+syntax enable
+let g:dracula_colorterm = 0
+" a hax to get around poor Terminal.app color support
+let g:dracula_italic=0
+colorscheme dracula_pro
