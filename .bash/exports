@@ -26,6 +26,10 @@ fi
 ##########################
 shopt -s histappend
 export HISTCONTROL=ignorespace:erasedups
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTSIZE=-1
+export HISTFILESIZE=-1
 
+##################
+# other settings #
+##################
+export VIMRUNTIME=$(brew --prefix)'/share/vim/vim82'

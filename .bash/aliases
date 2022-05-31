@@ -34,6 +34,7 @@ alias gp="git pull"
 ##########################################
 alias openm='open -a /Applications/MacDown.app'
 alias openx='open -a /Applications/Xcode.app'
+alias openv='open -a /Applications/MacVim.app'
 
 #########
 # tools #

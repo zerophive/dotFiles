@@ -10,7 +10,7 @@ set smarttab
 set backspace=2
 set showmatch
 set showmode
-set term=xterm-color
+"set term=xterm-color
 set fileformats=unix,mac,dos
 set background=dark
 set hlsearch
@@ -27,4 +27,4 @@ syntax enable
 let g:dracula_colorterm = 0
 " a hax to get around poor Terminal.app color support
 let g:dracula_italic=0
-colorscheme dracula_pro
+colorscheme dracula_pro_van_helsing
