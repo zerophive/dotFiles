@@ -69,6 +69,8 @@ brew install gnupg
 brew install swiftlint
 brew install graphviz
 brew install glow
+brew install jq
+brew install tree
 
 # install these casks
 #####################

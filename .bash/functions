@@ -113,42 +113,42 @@ function mdd() {
 # git_move_tag() - delete and move a git tag #
 ##############################################
 function git_move_tag() {
-    git tag --delete ${1} && git push origin --delete ${1} && git tag ${1} && git push origin --tags -f
+    git tag --delete ${1}
+    git push origin --delete ${1}
+    git tag ${1}
+    git push origin --tags -f
 }
 
 #######################################
 # git_delete_tag() - delete a git tag #
 #######################################
 function git_delete_tag() {
-    git tag --delete ${1} && git push origin --delete ${1} && git push origin --tags -f
+    git tag --delete ${1}
+    git push origin --delete ${1}
+    git push origin --tags -f
 }
 
 #############################################
 # git_delete_branch() - delete a git branch #
 #############################################
 function git_delete_branch() {
-    git branch -D ${1} && git push origin --delete ${1} && git push origin --tags -f
+    git branch -D ${1}
+    git push origin --delete ${1}
+    git push origin --tags -f
 }
 
 ##############################################
 # cr_to_spc() - convert strings cr to spaces #
 ##############################################
 cr_to_spc() {
-    echo ${1} | tr '\n' ' '
+    echo $(echo ${1} | tr '\n' ' ')
 }
 
 ###############################################
 # spc_to_cr() - convert strings spaces to crs #
 ###############################################
 spc_to_cr() {
-    echo ${1} | tr ' ' '\n'
-}
-
-############################################################################################
-# mk_mono_tag() - convert a project-version to Monorail compatible project:project-version #
-############################################################################################
-mk_mono_tag() {
-    echo ${1} | awk '{split($0,a,"-"); print a[1]":"a[1]"-"a[2]}'
+    echo $(echo ${1} | tr ' ' '\n')
 }
 
 ###############################

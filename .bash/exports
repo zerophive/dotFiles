@@ -1,17 +1,5 @@
 #!/usr/bin/env bash
 
-#######################
-# set PATH # to glory #
-#######################
-LOCAL_BIN="/usr/local/bin"
-LOCAL_SBIN="/usr/local/sbin"
-MY_LOCAL_BIN="${HOME}/usr/bin"
-PATH="${LOCAL_BIN}:${LOCAL_SBIN}:${MY_LOCAL_BIN}:${PATH}"
-
-# de-dup path entries
-#####################
-export PATH=$(printf %s "${PATH}" | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}')
-
 ######################
 # set color terminal #
 ######################
@@ -19,6 +7,10 @@ if ls --color > /dev/null 2>&1; then # GNU `ls`
     export GNU_STYLE_LS=1
 else
     export CLICOLOR=1
+fi
+
+if [[ ! -v ${CLICOLOR} ]] ; then
+    export LSCOLORS="gxfxcxdxbxegedabagacad"
 fi
 
 ##########################
@@ -32,4 +24,4 @@ export HISTFILESIZE=-1
 ##################
 # other settings #
 ##################
-export VIMRUNTIME=$(brew --prefix)'/share/vim/vim82'
+export VIMRUNTIME=$(brew --prefix)'/share/vim/vim90'
