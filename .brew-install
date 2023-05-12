@@ -74,8 +74,8 @@ brew install tree
 
 # install these casks
 #####################
-brew cask install macdown
-brew cask install wireshark
+brew install --cask macdown                                                    
+brew install --cask wireshark                                                  
 
 # post-install actions
 ######################
