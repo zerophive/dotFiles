@@ -3,8 +3,13 @@
 #######################
 # set PATH # to glory #
 #######################
-BREW_BIN="$(/opt/brew/bin/brew --prefix)/bin"
-BREW_SBIN="$(/opt/brew/bin/brew --prefix)/sbin"
+if [ -f '/opt/homebrew/bin/brew' ]; then
+    BREW_BOOTSTRAP_EXEC='/opt/homebrew/bin/brew'
+elif [ -f '/opt/brew/bin/brew' ]; then
+    BREW_BOOTSTRAP_EXEC='/opt/brew/bin/brew'
+fi
+BREW_BIN="$(${BREW_BOOTSTRAP_EXEC} --prefix)/bin"
+BREW_SBIN="$(${BREW_BOOTSTRAP_EXEC} --prefix)/sbin"
 LOCAL_BIN="/usr/local/bin"
 LOCAL_SBIN="/usr/local/sbin"
 MY_LOCAL_BIN="${HOME}/usr/bin"
