@@ -27,15 +27,24 @@ alias dw="defaults write"
 
 # git shortcuts
 ###############
-alias gp="git pull"
+alias gp="git pull --recurse-submodules --tags"
 alias tigf="tig --first-parent"
 
 ##########################################
 # some helpful probes to open UI Editors #
 ##########################################
-alias openm='open -a /Applications/MacDown.app'
-alias openx='open -a /Applications/Xcode.app'
-alias openv='open -a /Applications/MacVim.app'
+if [[ -d /Applications/MacDown.app ]]; then
+    alias openm='open -a /Applications/MacDown.app'
+fi
+if [[ -d /Applications/Xcode.app ]]; then
+    alias openx='open -a /Applications/Xcode.app'
+fi
+if [[ -d /Applications/MacVim.app ]]; then
+    alias openv='open -a /Applications/MacVim.app'
+fi
+if [[ -d /Applications/BBEdit.app ]]; then
+    alias openb='open -a /Applications/BBEdit.app'
+fi
 
 #########
 # tools #
