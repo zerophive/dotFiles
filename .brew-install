@@ -71,6 +71,7 @@ brew install graphviz
 brew install glow
 brew install jq
 brew install tree
+brew install yq
 
 # install these casks
 #####################
