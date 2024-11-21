@@ -72,11 +72,22 @@ brew install glow
 brew install jq
 brew install tree
 brew install yq
+brew install virtualenv
+brew install virtualenvwrapper
+brew install neovim
+brew install vimr
+brew install postgresql 
+brew install dust
+brew install duf
+brew install erdtree
+brew install jless
+brew install pv
 
 # install these casks
 #####################
 brew install --cask macdown                                                    
 brew install --cask wireshark                                                  
+brew install --cask db-browser-for-sqlite
 
 # post-install actions
 ######################

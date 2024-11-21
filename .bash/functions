@@ -148,7 +148,7 @@ cr_to_spc() {
 # spc_to_cr() - convert strings spaces to crs #
 ###############################################
 spc_to_cr() {
-    echo $(echo ${1} | tr ' ' '\n')
+    echo ${1} | tr '\ ' '\n'
 }
 
 ###############################

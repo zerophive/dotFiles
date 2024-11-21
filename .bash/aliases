@@ -19,6 +19,7 @@ fi
 # shortcuts #
 #############
 alias cl='clear'
+alias yless='jless --yaml'
 
 # defaults read/write
 #####################
@@ -28,6 +29,7 @@ alias dw="defaults write"
 # git shortcuts
 ###############
 alias gp="git pull --recurse-submodules --tags"
+alias gs="git status"
 alias gck="git cherry-pick"
 alias tigf="tig --first-parent"
 alias tigs="tig --show-signature"
