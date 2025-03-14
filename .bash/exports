@@ -21,6 +21,16 @@ export HISTCONTROL=ignorespace:erasedups
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 
+###################
+# homebrew export #
+###################
+export HOMEBREW_PREFIX="$(${BREW_BOOTSTRAP_EXEC} --prefix)"
+export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar";
+export HOMEBREW_REPOSITORY="$(${BREW_BOOTSTRAP_EXEC} --repository)"
+[ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+
+
 ##############################
 # virtualenvwrapper settings #
 ##############################
