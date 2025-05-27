@@ -44,7 +44,7 @@ if [[ -d /Applications/Xcode.app ]]; then
     alias openx='open -a /Applications/Xcode.app'
 fi
 if [[ -d /Applications/MacVim.app ]]; then
-    alias openv='open -a /Applications/MacVim.app'
+    alias openv='open -a /Applications/Visual\ Studio\ Code.app'
 fi
 if [[ -d /Applications/BBEdit.app ]]; then
     alias openb='open -a /Applications/BBEdit.app'
