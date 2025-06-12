@@ -82,6 +82,12 @@ brew install duf
 brew install erdtree
 brew install jless
 brew install pv
+brew install virt-manager
+brew install rclone
+brew install xq
+brew install sabnzbd
+brew install par2
+brew install rar
 
 # install these casks
 #####################
