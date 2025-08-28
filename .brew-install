@@ -82,12 +82,25 @@ brew install duf
 brew install erdtree
 brew install jless
 brew install pv
+brew install jo
+brew install rclone
+brew install xq
+brew install node
+brew install uv
+brew install claude-code
+brew install claudekit
+
+# work specific
+###############
+brew install sabaton
+brew install whisperctl
 
 # install these casks
 #####################
 brew install --cask macdown                                                    
 brew install --cask wireshark                                                  
 brew install --cask db-browser-for-sqlite
+brew install --cask ghostty
 
 # post-install actions
 ######################
