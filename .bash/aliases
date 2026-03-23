@@ -28,6 +28,7 @@ alias dw="defaults write"
 
 # git shortcuts
 ###############
+alias gd="git diff"
 alias gp="git pull --recurse-submodules --tags"
 alias gs="git status"
 alias gck="git cherry-pick"

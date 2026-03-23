@@ -42,4 +42,4 @@ source $(brew --prefix)/bin/virtualenvwrapper.sh
 ##################
 # other settings #
 ##################
-export VIMRUNTIME=$(brew --prefix)'/share/vim/vim91'
+export VIMRUNTIME=$(brew --prefix)'/share/vim/vim92'
