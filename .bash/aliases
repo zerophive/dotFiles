@@ -38,13 +38,13 @@ alias tigs="tig --show-signature"
 ##########################################
 # some helpful probes to open UI Editors #
 ##########################################
-if [[ -d /Applications/MacDown.app ]]; then
-    alias openm='open -a /Applications/MacDown.app'
+if [[ -d /Applications/MacDown\ 3000.app ]]; then
+    alias openm='open -a /Applications/MacDown\ 3000.app'
 fi
 if [[ -d /Applications/Xcode.app ]]; then
     alias openx='open -a /Applications/Xcode.app'
 fi
-if [[ -d /Applications/MacVim.app ]]; then
+if [[ -d /Applications/Visual\ Studio\ Code.app ]]; then
     alias openv='open -a /Applications/Visual\ Studio\ Code.app'
 fi
 if [[ -d /Applications/BBEdit.app ]]; then

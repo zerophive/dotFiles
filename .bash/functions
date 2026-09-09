@@ -6,40 +6,41 @@
 function clangit() {
     # gsed implementation, not sure to use this one or a more generic sed
     #local output=$(echo ${1} | gsed -e 's/\.c\|\.cpp\|\.m\|\.mm//')
-    local output=$(echo ${1} | sed -e 's/\.cpp//;s/\.c//;s/\.mm//;s/\.m//')
-    clang ${1} -o ${output}
+    local _output=$(echo ${1} | sed -e 's/\.cpp//;s/\.c//;s/\.mm//;s/\.m//')
+    clang ${1} -o ${_output}
 }
 
 ###################################################################
 # cleanHosts() cleans out host names from ~/ssh/known_hosts files # 
 ###################################################################
 function cleanHosts() {
-    usage="usage: cleanHosts [--backup | -b] <host1> <host2> ..."
-    if [ ${#1} -eq 0 ]; then
-        echo "$usage"
-        return 0
+    local _usage="usage: cleanHosts [--backup | -b] HOST1 [HOST2]..."
+    if [ $# -lt 1 ]; then
+        echo "${_usage}"
+        return -1
     fi
 
-    local SSH_DIR="${HOME}/.ssh"
+    local _SSH_DIR="${HOME}/.ssh"
+    local _host=${1}
 
-    if [[ ${1} == "--backup" || ${1} == "-b" ]]; then
+    if [[ ${_host} == "--backup" || ${_host} == "-b" ]]; then
         echo "... backing up known_hosts..."
-        cp ${SSH_DIR}/known_hosts ${SSH_DIR}/known_hosts.bak
-        cp ${SSH_DIR}/known_hosts2 ${SSH_DIR}/known_hosts2.bak
+        cp ${_SSH_DIR}/known_hosts ${_SSH_DIR}/known_hosts.bak
+        cp ${_SSH_DIR}/known_hosts2 ${_SSH_DIR}/known_hosts2.bak
         shift
     fi
 
     while [ ${#1} -gt 0 ]; do
-        if  grep -q ${1} ${SSH_DIR}/known_hosts || grep -q ${1} ${SSH_DIR}/known_hosts2; then
+        if  grep -q ${_host} ${_SSH_DIR}/known_hosts || grep -q ${_host} ${_SSH_DIR}/known_hosts2; then
             echo "...removing host: ${1}"
 
-            grep -v ${1} ${SSH_DIR}/known_hosts > ${SSH_DIR}/known_hosts.$$.new
-            mv ${SSH_DIR}/known_hosts.$$.new ${SSH_DIR}/known_hosts
+            grep -v ${_host} ${_SSH_DIR}/known_hosts > ${_SSH_DIR}/known_hosts.$$.new
+            mv ${_SSH_DIR}/known_hosts.$$.new ${_SSH_DIR}/known_hosts
 
-            grep -v ${1} ${SSH_DIR}/known_hosts2 > ${SSH_DIR}/known_hosts2.$$.new
-            mv ${SSH_DIR}/known_hosts2.$$.new ${SSH_DIR}/known_hosts2
+            grep -v ${_host} ${_SSH_DIR}/known_hosts2 > ${_SSH_DIR}/known_hosts2.$$.new
+            mv ${_SSH_DIR}/known_hosts2.$$.new ${_SSH_DIR}/known_hosts2
         else
-            warn "...${1} not in known_hosts"
+            warn "...${_host} not in known_hosts"
         fi
         shift
     done
@@ -63,13 +64,14 @@ function depyc() {
 # getCurl() -  get a file via cUrl, like -O but better #
 ########################################################
 function getCurl() {
-    if [ ! ${1} ]; then
-        echo "Need inputs!!";
-        return 1;
+    local _usage="usage: getCurl URL"
+    if [ $# -lt 1 ]; then
+        echo "${_usage}";
+        return -1;
     fi
-
-    local outputFile=`echo "$1" | sed -e 's/^.*\/*[A-Za-z]\///g'`
-    curl $1 -o $outputFile
+    local _url=${1}
+    local _outputFile=`echo "${_url}" | sed -e 's/^.*\/*[A-Za-z]\///g'`
+    curl ${_url} -o ${_outputFile}
 }
 
 #################################################################
