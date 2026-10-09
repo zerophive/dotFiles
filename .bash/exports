@@ -43,7 +43,4 @@ source $(brew --prefix)/bin/virtualenvwrapper.sh
 # other settings #
 ##################
 export VIMRUNTIME=$(brew --prefix)'/share/vim/vim92'
-<<<<<<< Updated upstream
-=======
 export HOMEBREW_NO_ASK='YES'
->>>>>>> Stashed changes

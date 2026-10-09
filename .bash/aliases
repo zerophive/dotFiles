@@ -44,11 +44,7 @@ fi
 if [[ -d /Applications/Xcode.app ]]; then
     alias openx='open -a /Applications/Xcode.app'
 fi
-<<<<<<< Updated upstream
 if [[ -d /Applications/Visual\ Studio\ Code.app ]]; then
-=======
-if [[ -d /Applications/Visual\ Studio\ Code.app.app ]]; then
->>>>>>> Stashed changes
     alias openv='open -a /Applications/Visual\ Studio\ Code.app'
 fi
 if [[ -d /Applications/BBEdit.app ]]; then
