@@ -1,0 +1,17 @@
+# theme setting
+theme = vt220-green
+
+# Option acts as Alt (tmux M-arrow bindings)
+macos-option-as-alt = true
+
+# font settings
+font-size = 11
+#adjust-cell-height = 6%
+
+# window settings
+window-width = 160
+window-height = 70
+window-save-state = always
+
+# remove close window and quit confirmation
+confirm-close-surface = false

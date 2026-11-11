@@ -1,0 +1,40 @@
+# DEC VT220 (P31 Green Phosphor) - customized ANSI palette
+background = #050a05
+# pure black
+#background = #000000
+foreground = #33ff33
+cursor-color = #808080
+cursor-text = #050a05
+# pure black
+#cursor-text = #000000
+selection-background = #2b82e4
+selection-foreground = #ffffff
+bold-color = #00ff00
+
+# Standard ANSI palette (Terminal.app defaults)
+palette = 0=#050a05
+# pure black
+#palette = 0=#000000
+palette = 1=#f04c4c
+# deep red, hard to read
+#palette = 1=#990000
+palette = 2=#00a600
+palette = 3=#999900
+palette = 4=#8aa9ff
+# dark blue, hard to read
+#palette = 4=#0000b2
+palette = 5=#b200b2
+palette = 6=#00a6b2
+palette = 7=#bfbfbf
+palette = 8=#666666
+palette = 9=#f47b7b
+# deep red, hard to read
+#palette = 9=#e60000
+palette = 10=#00d900
+palette = 11=#e6e600
+palette = 12=#bdceff
+# dark blue, hard to read
+#palette = 12=#0000ff
+palette = 13=#e600e6
+palette = 14=#00e6e6
+palette = 15=#e6e6e6

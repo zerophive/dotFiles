@@ -1,0 +1,26 @@
+# Classic DEC VT220 (P31 Green Phosphor)
+background = #050a05
+foreground = #33ff33
+cursor-color = #33ff33
+cursor-text = #050a05
+selection-background = #33ff33
+selection-foreground = #050a05
+
+# Monochrome Green-Shaded ANSI Palette (preserves contrast in modern CLI tools)
+palette = 0=#050a05
+palette = 1=#1a801a
+palette = 2=#28b828
+palette = 3=#4dff4d
+palette = 4=#146614
+palette = 5=#229922
+palette = 6=#2eb82e
+palette = 7=#33ff33
+palette = 8=#145214
+palette = 9=#28a428
+palette = 10=#33ff33
+palette = 11=#80ff80
+palette = 12=#1f7a1f
+palette = 13=#2eb82e
+palette = 14=#5cd65c
+palette = 15=#b3ffb3
+

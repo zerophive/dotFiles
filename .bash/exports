@@ -9,7 +9,7 @@ else
     export CLICOLOR=1
 fi
 
-if [[ ! -v ${CLICOLOR} ]] ; then
+if [[ -n "${CLICOLOR-}" ]] ; then
     export LSCOLORS="gxfxcxdxbxegedabagacad"
 fi
 
