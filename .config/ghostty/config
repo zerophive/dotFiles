@@ -15,3 +15,6 @@ window-save-state = always
 
 # remove close window and quit confirmation
 confirm-close-surface = false
+
+# terminal bell settings
+bell-features = system
